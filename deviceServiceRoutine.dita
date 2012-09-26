@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<!--
+TOPPERS/ASP Kernel
+Toyohashi Open Platform for Embedded Real-Time Systems/
+Advanced Standard Profile Kernel
+
+Copyright (C) 2005-2011 by Embedded and Real-Time Systems Laboratory
+Graduate School of Information Science, Nagoya Univ., JAPAN
+
+上記著作権者は，以下の(1)～(4)の条件を満たす場合に限り，本ソフトウェ
+ア（本ソフトウェアを改変したものを含む．以下同じ）を使用・複製・改
+変・再配布（以下，利用と呼ぶ）することを無償で許諾する．
+(1) 本ソフトウェアをソースコードの形で利用する場合には，上記の著作
+権表示，この利用条件および下記の無保証規定が，そのままの形でソー
+スコード中に含まれていること．
+(2) 本ソフトウェアを，ライブラリ形式など，他のソフトウェア開発に使
+用できる形で再配布する場合には，再配布に伴うドキュメント（利用
+者マニュアルなど）に，上記の著作権表示，この利用条件および下記
+の無保証規定を掲載すること．
+(3) 本ソフトウェアを，機器に組み込むなど，他のソフトウェア開発に使
+用できない形で再配布する場合には，次のいずれかの条件を満たすこ
+と．
+(a) 再配布に伴うドキュメント（利用者マニュアルなど）に，上記の著
+作権表示，この利用条件および下記の無保証規定を掲載すること．
+(b) 再配布の形態を，別に定める方法によって，TOPPERSプロジェクトに
+報告すること．
+(4) 本ソフトウェアの利用により直接的または間接的に生じるいかなる損
+害からも，上記著作権者およびTOPPERSプロジェクトを免責すること．
+また，本ソフトウェアのユーザまたはエンドユーザからのいかなる理
+由に基づく請求からも，上記著作権者およびTOPPERSプロジェクトを
+免責すること．
+
+本ソフトウェアは，無保証で提供されているものである．上記著作権者お
+よびTOPPERSプロジェクトは，本ソフトウェアに関して，特定の使用目的
+に対する適合性も含めて，いかなる保証も行わない．また，本ソフトウェ
+アの利用により直接的または間接的に生じたいかなる損害に関しても，そ
+の責任を負わない．
+-->
+<concept id="concept_x1j_kkx_rh">
+ <title>デバイスサービスルーチン</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>以下のデバイスサービルルーチンは，（少なくとも）シリアルI/Oポートからの 割込みがマスクされた状態で呼び出される．また，タスクコンテキスト，非タ
+   スクコンテキストのいずれで呼び出される場合もある（いずれで呼び出されて も動作するようにしなければならない）．</p>
+  <section>
+   <title>SIOPCB *sio_opn_por(ID siopid, intptr_t exinf)</title>
+   <p>siopidで指定されるシリアルI/Oポートをオープンする関数．exinfはシリアル I/Oポートに対する拡張情報で，コールバックを呼ぶ時にポートを区別するた めに渡す．</p>
+  </section>
+  <section>
+   <title>void sio_cls_por(SIOPCB *siopcb)</title>
+   <p>siopcbで指定されるシリアルI/Oポートをクローズする関数．</p>
+  </section>
+  <section>
+   <title>bool_t sio_snd_chr(SIOPCB *siopcb, char_t c)</title>
+   <p>siopcbで指定されるシリアルI/Oポートに，cで示される文字を送信する関数． 文字を送信レジスタに入れた場合にはtrueを，前に送信した文字の送信が終わっ
+    ていないために，文字を送信レジスタに入れられなかった場合にはfalseを返す．</p>
+  </section>
+  <section>
+   <title>int_t sio_rcv_chr(SIOPCB *siopcb)</title>
+   <p>siopcbで指定されるシリアルI/Oポートから文字を読む関数．文字を受信してい た場合，読んだ文字のコードは正の値として返し，文字を受信していない場合 には-1を返す．</p>
+  </section>
+  <section>
+   <title>void sio_ena_cbr(SIOPCB *siopcb, uint_t cbrtn)</title>
+   <p>siopcbで指定されるシリアルI/Oポートからの，cbrtnで指定されるコールバッ クを許可する．cbrtnには，SIO_RDY_SNDかSIO_RDY_RCVを指定できる．</p>
+  </section>
+  <section>
+   <title>void sio_dis_cbr(SIOPCB *siopcb, uint_t cbrtn)</title>
+   <p>siopcbで指定されるシリアルI/Oポートからの，cbrtnで指定されるコールバッ クを禁止する．cbrtnには，SIO_RDY_SNDかSIO_RDY_RCVを指定できる．</p>
+  </section>
+ </conbody>
+</concept>
