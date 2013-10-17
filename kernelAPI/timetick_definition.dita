@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_vjj_2m2_zh">
+ <title>タイムティックの定義</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(5-3-1) TIC_NUME タイムティックの周期の分子</p>
+  <p>(5-3-2) TIC_DENO タイムティックの周期の分母</p>
+  <p> タイムティックの周期（signal_timeを呼び出す周期）を，ミリ秒単位で， TIC_NUME/TIC_DENOに定義する．例えば，タイムティックの周期が1/30秒の場合
+   には，TIC_NUMEを100に，TIC_DENOを3に定義すればよい． </p>
+  <p>タイムティックの周期は，1ミリ秒とする（つまり，TIC_NUME，TIC_DENOとも1 に定義する）ことを推奨するが，シミュレーション環境や性能の低いプロセッ
+   サでそれが適切でない場合には，それ以外の値としてもよい．その場合でも， 可能な限り，1ミリ秒の倍数である（つまり，TIC_DENOを1に定義する）ことが 望ましい．</p>
+  <p> TIC_NUMEとTIC_DENOの定義を変更することで，タイムティックの周期を変更で きるようにタイマドライバを実装する場合には，この2つの定数の定義はデフォ
+   ルト値を与えていることになる．そこで，これらの定義を「#ifndef TIC_NUME」 「#endif」で囲んで記述する．</p>
+ </conbody>
+</concept>

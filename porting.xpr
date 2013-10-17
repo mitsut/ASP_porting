@@ -2,9 +2,21 @@
 <project version="14.0">
     <meta>
         <filters directoryPatterns="" filePatterns="" positiveFilePatterns="" showHiddenFiles="false"/>
-        <options/>
+        <options>
+            <serialized version="14.0" xml:space="preserve">
+                <map>
+                    <entry>
+                        <String>validation.scenarios</String>
+                        <validationScenario-array/>
+                    </entry>
+                </map>
+            </serialized>
+        </options>
     </meta>
     <projectTree name="porting.xpr">
+        <file name="callbackroutine.dita"/>
+        <file name="commondefine.dita"/>
+        <file name="commonsubject.dita"/>
         <file name="porting.ditamap"/>
     </projectTree>
 </project>

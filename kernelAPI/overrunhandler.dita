@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_us3_wm2_zh">
+ <title>オーバランハンドラ機能拡張のための定義（オプション）</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>オーバランハンドラ機能拡張パッケージをサポートする（使用できるようにす る）場合には，次の3つを実施することが必要である．<ul id="ul_o3z_xm2_zh">
+    <li>この節で説明する定義を行う．</li>
+    <li>６章に示すコード中で，TOPPERS_SUPPORT_OVRHDRがマクロ定義されている場 合にのみ有効となるコードを実装する．</li>
+    <li>オーバランタイマドライバを用意する．オーバランタイマドライバについて は，「6.14 オーバランタイマドライバ」の節を参照すること．</li>
+   </ul></p>
+  <p>(5-7-1) TOPPERS_TARGET_SUPPORT_OVRHDR </p>
+  <p>オーバランハンドラ機能拡張パッケージをサポートする場合には，このシンボ ルをマクロ定義する．</p>
+  <p> (5-7-2) TMAX_OVRTIM（オプション，デフォルトはULONG_MAX） </p>
+  <p>プロセッサ時間としてオーバランタイマに設定できる最大値（単位はマイクロ 秒）にマクロ定義する． </p>
+ </conbody>
+</concept>

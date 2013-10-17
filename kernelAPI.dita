@@ -41,6 +41,8 @@ Graduate School of Information Science, Nagoya Univ., JAPAN
  <title>カーネルAPIのターゲット依存部</title>
  <shortdesc></shortdesc>
  <conbody>
-  <p>Concept definition.</p>
+  <p>カーネルAPI（kernel.h）のターゲット依存部の定義は，target_kernel.hまた はそこからインクルードされるファイル（プロセッサ・チップ・開発環境依存
+部で用意されるヘッダファイルなど）に含める．</p>
+<p/>
  </conbody>
 </concept>

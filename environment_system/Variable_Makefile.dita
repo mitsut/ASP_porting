@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_jrp_15d_zh">
+ <title>開発環境名とコマンド名の設定</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>開発環境名とコマンド名を設定するために，Makefileのターゲット依存部で次 の変数を定義する．</p>
+  <p>(2-3-1) TOOL 開発環境名</p>
+  <p>開発環境名に定義する．GNU開発環境を用いる場合には，gccに定義する．</p>
+  <p>(2-3-2) GCC_TARGET GNU開発環境のターゲット名</p>
+  <p>GNU開発環境を用いる場合に，GNU開発環境をconfigureする場合に指定するター ゲット名に定義する．ここで指定したターゲット名は，開発環境のコマンド名
+   の先頭に付与される文字列となる．例えば，GCC_TARGETをm68k-unknown-elfに 定義した場合には，コンパイラとしてm68k-unknown-elf-gccが使われる．この
+   変数が定義されない場合には，単なるgccが使われる．</p>
+  <p>(2-3-3) CC Cコンパイラドライバの名称</p>
+  <p>(2-3-4) CXX C++コンパイラドライバの名称</p>
+  <p>(2-3-5) AS アセンブラの名称</p>
+  <p>(2-3-6) LD リンカの名称</p>
+  <p>(2-3-7) AR アーカイバの名称</p>
+  <p>(2-3-8) NM nmプログラムの名称</p>
+  <p>(2-3-9) RANLIB ranlibプログラムの名称</p>
+  <p>(2-3-10) OBJCOPY objcopyプログラムの名称</p>
+  <p>(2-3-11) OBJDUMP objdumpプログラムの名称</p>
+  <p>GNU開発環境以外の開発環境を用いる場合に，それぞれのコマンドの名称に定義 する．対応するコマンドがない場合や，コマンドパラメータが異なる場合には，
+   Makefile中でそのコマンドを呼び出している部分を変更する必要がある．</p>
+  <p>GNU開発環境では，これらはGCC_TARGETを用いて定義されるので，定義する必要 はない．</p>
+ </conbody>
+</concept>

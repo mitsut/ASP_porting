@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_adb_cl2_zh">
+ <title>プロセッサのエンディアン</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(4-3-1) SIL_ENDIAN_BIG </p>
+  <p>(4-3-2) SIL_ENDIAN_LITTLE</p>
+  <p>プロセッサのエンディアンにより，いずれか片方のシンボルをマクロ定義する．</p>
+  <p/>
+  <p> (4-3-3) TOPPERS_SIL_REV_ENDIAN_UINT16（オプション）</p>
+  <p> (4-3-4) TOPPERS_SIL_REV_ENDIAN_UINT32（オプション） </p>
+  <p>それぞれ，16ビット，32ビットの符号無し整数のエンディアンを反転させるマ クロ．プロセッサがエンディアン反転のための命令を持つ場合には，その命令
+   を用いて実現する．これらのシンボルをマクロ定義しない場合には，デフォル トの定義が使われる．</p>
+ </conbody>
+</concept>

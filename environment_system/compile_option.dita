@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_ezc_q5d_zh">
+ <title>コンパイルオプションとオブジェクトファイルの設定</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>Makefileのターゲット依存部で以下で説明する変数を定義する時には，":="を 用いて，それまでの定義に追加する形で行う．例えば，コンパイラに対するそ の他のオプションとして「-Wall
+   -g -O2」を追加したい場合には，「COPTS := $(COPTS) -Wall -g -O2」という記述をMakefileのターゲット依存部に含める．</p>
+  <p>(2-4-1) COPTS コンパイラに対するその他のオプション</p>
+  <p>(2-4-2) CDEFS マクロ定義オプション（-Dオプション）</p>
+  <p>(2-4-3) INCLUDES ヘッダファイルの置かれたディレクトリ指定オ プション（-Iオプション）</p>
+  <p>(2-4-4) LDFLAGS リンカに対するその他のオプション</p>
+  <p>(2-4-5) LIBS ライブラリリンク指定のためのオプション</p>
+  <p>ターゲットに依存して，すべてのソースファイルに共通するコンパイルオプショ ンの追加が必要な場合には，オプションの種類毎に上に示した変数に定義する．</p>
+  <p>ほとんどの場合に，ターゲット依存部ディレクトリのMakefile.targetには，以 下の記述を含める必要がある． </p>
+  <p>
+   <codeblock>INCLUDES := $(INCLUDES) -I$(TARGETDIR)</codeblock>
+  </p>
+  <p>ここでTARGETDIRは，ターゲット依存部ディレクトリに定義されている．また SRCDIRは，Makefileにおいて，ソースプログラムのルートディレクトリ
+   （configureが置かれているディレクトリ）に定義されている．</p>
+  <p>コンパイラの問題等で，警告メッセージが出ることを防げない状況以外では， COPTSに-Werrorを追加することを推奨する． </p>
+  <p/>
+  <codeblock>COPTS := $(COPTS) -Werror</codeblock>
+  <p>カーネルのコンパイル時に，dereferencing type-punned pointer will break strict-aliasing
+   rulesという警告が出る場合には，以下を追加するとよい．こ の警告メッセージに関する詳細は，「TOPPERS/ASPカーネル 設計メモ」の「型
+   キャストに伴う警告メッセージ」の節を参照すること．<codeblock>KERNEL_CFLAGS := $(KERNEL_CFLAGS) -fno-strict-aliasing</codeblock></p>
+  <p>また，アセンブリ言語レベルの識別名が，C言語レベルの識別名の先頭に"_"が 付いたものになる場合には，CDEFSに-DTOPPERS_LABEL_ASMを追加する．</p>
+  <p>(2-4-6) SYSSVC_DIR システムサービスのソースが置かれたディレクトリ</p>
+  <p>(2-4-7) SYSSVC_ASMOBJS アセンブリ言語で記述されたシステムサービスの オブジェクト</p>
+  <p>(2-4-8) SYSSVC_COBJS C言語で記述されたシステムサービスのオブジェクト</p>
+  <p>(2-4-9) SYSSVC_CFLAGS システムサービスに対するコンパイルオプション</p>
+  <p>(2-4-10) SYSSVC_LIBS システムサービスに対するライブラリリンク指定</p>
+  <p>ターゲットに依存して，システムサービス（システムログタスクやデバイスド ライバなど）のソースが置かれたディレクトリ，システムサービスを構成する
+   オブジェクトファイルのリスト，それらをコンパイルする際に適用するコンパ イルオプション，その構成に必要なライブラリリンク指定を追加する場合には， 上に示した変数に定義する．</p>
+  <p>(2-4-11) KERNEL_DIR カーネルのソースが置かれたディレクトリ</p>
+  <p>(2-4-12) KERNEL_ASMOBJS アセンブリ言語で記述されたカーネルのオブジェクト</p>
+  <p>(2-4-13) KERNEL_COBJS C言語で記述されたカーネルのオブジェクト</p>
+  <p>(2-4-14) KERNEL_CFLAGS カーネルに対するコンパイルオプション</p>
+  <p>ターゲットに依存して，カーネルのソースが置かれたディレクトリ，カーネル を構成するオブジェクトファイルのリスト，それらをコンパイルする際に適用
+   するコンパイルオプションを追加する場合には，上に示した変数に定義する．</p>
+  <p>ほとんどの場合に，ターゲット依存部ディレクトリのMakefile.targetには，以 下の記述を含める必要がある．</p>
+  <p/>
+  <p>
+   <codeblock>KERNEL_DIR := $(KERNEL_DIR) $(TARGETDIR)
+KERNEL_ASMOBJS := $(KERNEL_ASMOBJS) target_support.o
+KERNEL_COBJS := $(KERNEL_COBJS) target_config.o target_timer.o</codeblock>
+  </p>
+  <p>(2-4-15) CFG_TABS コンフィギュレータに対するオプション</p>
+  <p>ターゲットに依存して，コンフィギュレータに対するオプションを追加する場 合には，上に示した変数に定義する．具体的には，コンフィギュレータの値取
+   得シンボルテーブルのターゲット依存部（target_def.csv）がある場合には， それを指定するオプションを追加する必要がある．</p>
+  <p>ほとんどの場合に，ターゲット依存部ディレクトリのMakefile.targetには，以
+   下の記述を含める必要がある．<codeblock>CFG_TABS := $(CFG_TABS) --cfg1-def-table $(TARGETDIR)/target_def.csv</codeblock></p>
+  <p>(2-4-16) CFG1_OUT_LDFLAGS cfg1_out.cに対するリンクオプション</p>
+  <p>ターゲットに依存して，cfg1_out.cをリンクする際に適用するオプションを追 加する場合には，上に示した変数に定義する．</p>
+  <p>(2-4-17) CFG_OBJS システムコンフィギュレーションのためのオブ ジェクト</p>
+  <p>ターゲットに依存して，システムコンフィギュレーションのためのオブジェク トファイルを（kernel_cfg.o以外に）追加する場合には，上に示した変数に定
+   義する．この場合，追加したオブジェクトファイルの作成ルール（コンパイル／ アセンブルルールと依存関係作成ルール）を，Makefileのターゲット依存部に 記述する必要がある．</p>
+  <p>(2-4-18) CFG2_OUT</p>
+  <p>ターゲットに依存して，コンフィギュレータのパス2でkernel_cfg.cと kernel_cfg.h以外のファイルを生成する場合には，上に示した変数に定義する．</p>
+  <p>(2-4-19) OMIT_WARINIG_ALL</p>
+  <p>(2-4-20) OMIT_OPTIMIZATION</p>
+  <p>サンプルのMakefileでは，コンパイラに対するオプションに「-Wall -g -O2」 を追加する．-Wallを追加したくない場合には，Makefileのターゲット依存部で
+   OMIT_WARNING_ALLを"true"に定義する．-O2を追加したくない場合には，
+   Makefileのターゲット依存部でOMIT_OPTIMIZATIONを"true"に定義する．</p>
+  <p/>
+ </conbody>
+</concept>

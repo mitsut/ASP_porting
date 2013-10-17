@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_vrn_fq2_zh">
+ <title>システム状態の管理</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>ASPカーネルを新たなターゲットシステムにポーティングする際に，最も重要な 作業は，カーネルが定義するシステム状態を，ハードウェア（プロセッサ）上
+   でどのように実現するかである．以下の説明は，TOPPERS新世代カーネルにおけ るシステム状態の定義・意味を知っていることを前提に記述している．</p>
+ </conbody>
+</concept>

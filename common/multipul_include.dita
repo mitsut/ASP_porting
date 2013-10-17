@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_o11_wbd_zh">
+ <title>多重インクルードの防止</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>すべてのヘッダファイルは，多重にインクルードされるのを防止するための条 件コンパイル記述を入れることとする．例えば，target_config.hであれば，ファ
+   イルの先頭に<codeblock>#ifndef TOPPERS_TARGET_CONFIG_H
+#define TOPPERS_TARGET_CONFIG_H</codeblock></p>
+  <p>を，ファイルの末尾に<codeblock>#endif /* TOPPERS_TARGET_CONFIG_H */</codeblock></p>
+  <p>を記述する．</p>
+ </conbody>
+</concept>

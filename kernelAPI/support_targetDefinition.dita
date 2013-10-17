@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_zqm_vl2_zh">
+ <title>ターゲット定義でサポートする機能</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(5-1-1) TOPPERS_TARGET_SUPPORT_DIS_INT dis_intをサポートする</p>
+  <p> (5-1-2) TOPPERS_TARGET_SUPPORT_ENA_INT ena_intをサポートする</p>
+  <p> (5-1-3) TOPPERS_TARGET_SUPPORT_GET_UTM get_utmをサポートする</p>
+  <p> dis_int，ena_int，get_utmをサポートする場合に，それぞれのシンボルをマク ロ定義する．</p>
+ </conbody>
+</concept>

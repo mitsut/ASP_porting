@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_xd2_3l2_zh">
+ <title>メモリ空間アクセス関数</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(4-4-1) TOPPERS_OMIT_SIL_ACCESS </p>
+  <p>標準のメモリ空間アクセス関数を使用せず，ターゲット依存部で用意する場合 には，このシンボルをマクロ定義する．</p>
+  <p/>
+  <p>(4-4-2) TOPPERS_OMIT_SIL_REH_LEM</p>
+  <p> (4-4-3) TOPPERS_OMIT_SIL_WRH_LEM</p>
+  <p> (4-4-4) TOPPERS_OMIT_SIL_REH_BEM</p>
+  <p> (4-4-5) TOPPERS_OMIT_SIL_WRH_BEM</p>
+  <p> (4-4-6) TOPPERS_OMIT_SIL_REW_LEM</p>
+  <p> (4-4-7) TOPPERS_OMIT_SIL_WRW_LEM</p>
+  <p> (4-4-8) TOPPERS_OMIT_SIL_REW_BEM </p>
+  <p>(4-4-9) TOPPERS_OMIT_SIL_WRW_BEM</p>
+  <p> それぞれ，標準のsil_reh_lem，sil_wrh_lem，sil_reh_bem，sil_wrh_bem，
+   sil_rew_lem，sil_wrw_lem，sil_rew_bem，sil_wrw_bemを使用せず，ターゲッ ト依存部で用意する場合には，これらのシンボルをマクロ定義する．</p>
+ </conbody>
+</concept>

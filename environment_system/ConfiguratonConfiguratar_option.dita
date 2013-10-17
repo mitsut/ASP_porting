@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_khq_wwd_zh">
+ <title>コンフィギュレータを用いる方法</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>コンフィギュレータのパス1で生成するcfg1_out.cをコンパイルして生成したオ ブジェクトファイルから，コンフィギュレータによってoffset.hを生成する方
+   法である．この方法を用いるためには，ターゲット依存部でオフセットファイ ル生成用テンプレートファイルを用意し，target_cfg1_out.h（または，そこか
+   らインクルードされるファイル）とtarget_def.csv（または，同等の役割を持 つファイル）に記述を追加する必要がある．なお，これらのファイルを新たに
+   用意した際や修正した際には，offset.hに妥当な定義が生成されていることを 確認すべきである．</p>
+  <p>オフセットファイル生成用テンプレートファイルは，ターゲット依存部で， target_offset.tf（または，プロセッサ依存部やチップ依存部で用意するそれ
+   に代わるファイル）に用意する．また，Makefileのターゲット依存部で，次の 例のように，OFFSET_TFにオフセットファイル生成用テンプレートファイルのファ
+   イル名を定義する．<codeblock># オフセットファイル生成のための定義
+OFFSET_TF = $(TARGETDIR)/target_offset.tf</codeblock></p>
+  <p>オフセットファイル生成用テンプレートファイルには，以下の内容を記述する．</p>
+  <p>(1) 標準テンプレートファイルのインクルード</p>
+  <p>オフセットファイル生成用の標準テンプレートファイル（kernel/genoffset.tf） をインクルードする．標準テンプレートファイルには，以下で用いるDEFINE関
+   数やDEFINE_BIT関数の定義などが含まれている．</p>
+  <p>
+   <codeblock>$ 標準テンプレートファイルのインクルード
+$INCLUDE "kernel/genoffset.tf"$</codeblock>
+  </p>
+  <p>(2) オフセット値のマクロ定義の生成</p>
+  <p>DEFINE関数を用いて，オフセット値のマクロ定義を生成する．例えば，TCB中の タスクコンテキストブロック（tskctxb）に含まれるpcフィールドのオフセット
+   値を，TCB_pcにマクロ定義する場合には，次のように記述する．</p>
+  <p>
+   <codeblock>$ オフセット値のマクロ定義の生成
+$DEFINE("TCB_pc", offsetof_TCB_pc)$</codeblock>
+  </p>
+  <p>ここで，DEFINE関数の第1パラメータはマクロ定義するシンボル，第2パラメー タは，オフセット値を保持するコンフィギュレータの変数である．</p>
+  <p>また，コンフィギュレータが，オフセット値を保持する変数（上の例では offsetof_TCB_pc）に値を設定するために，target_def.csv（または，同等の役
+   割を持つファイル）に次の例のような行を追加する．<codeblock>offsetof_TCB_pc,"offsetof(TCB,tskctxb.pc)"</codeblock></p>
+  <p>ただし，各オブジェクトの初期化ブロックのターゲット非依存のフィールドの オフセット値を取得するための記述は，kernel/kernel_def.csvに含まれている．
+   kernel/kernel_def.csvに含まれている記述は，target_def.csv（または，同等 の役割を持つファイル）に追加する必要はない．</p>
+  <p>(3) ビットオフセット値等のマクロ定義の生成</p>
+  <p>DEFINE_BIT関数を用いて，ビットのオフセット値，ビット位置，ビットマスク のマクロ定義を生成する．例えば，TCB中のenatexフィールドのオフセット値，
+   ビット位置，ビットマスクを，それぞれTCB_enatex，TCB_enatex_bit， TCB_enatex_maskにマクロ定義する場合には，次のように記述する．</p>
+  <p>
+   <codeblock>$DEFINE_BIT("TCB_enatex", sizeof_TCB, "B")$</codeblock>
+  </p>
+  <p>ここで，DEFINE_BIT関数の第1パラメータはマクロ定義するシンボル（の先頭部 分），第2パラメータは構造体のサイズである．第3パラメータには，ビットの
+   オフセット，ビット位置，ビットマスクを，8ビット単位（バイト単位）で求め る場合には"B"を，16ビット単位で求める場合には"H"を，32ビット単位で求め
+   る場合には"W"を指定する．なお，ビット位置は，LSBを0とした値（ビットリト ルエンディアンを想定）を求める．</p>
+  <p>また，target_cfg1_out.h（または，そこからインクルードされるファイル）に， ビットオフセット値等を求めるための構造体の変数定義を追加する．この構造
+   体の変数は，名称をマクロ定義するシンボル（DEFINE_BIT関数の第1パラメータ） とし，対象のビットのみが1で，他のすべてのビットが0になるように初期化す
+   る．また，const修飾子を付加する．例えば，TCB中のenatexフィールドのビッ トオフセット値等を求める場合には，次のような定義を追加する（tskctxbの初
+   期値は，ターゲット依存なので注意すること）．</p>
+  <p>
+   <codeblock>const TCB	TCB_enatex = {
+	{ NULL, NULL },			/* task_queue */
+	NULL,					/* p_tinib */
+	0U,						/* tstat */
+#ifdef TOPPERS_SUPPORT_MUTEX
+	0U,						/* bpriority */
+#endif /* TOPPERS_SUPPORT_MUTEX */
+	0U,						/* priority */
+	false,					/* acqeue */
+	false,					/* wupque */
+	true,					/* enatex */
+	0U,						/* texptn */
+	NULL,					/* p_winifo */
+#ifdef TOPPERS_SUPPORT_MUTEX
+	{ NULL, NULL },			/* mutex_queue */
+#endif /* TOPPERS_SUPPORT_MUTEX */
+#ifdef TOPPERS_SUPPORT_OVRTIM
+	0U,						/* leftotm */
+#endif /* TOPPERS_SUPPORT_OVRTIM */
+	{ NULL, NULL }			/* tskctxb */
+};</codeblock>
+  </p>
+  <p>さらに，コンフィギュレータが，構造体のサイズ（上の例ではsizeof_TCB）に 値を設定するために，target_def.csv（または，同等の役割を持つファイル）
+   に次の例のような行を追加する．<codeblock>sizeof_TCB,sizeof(TCB)</codeblock></p>
+  <p>ただし，前述した通り，kernel/kernel_def.csvに含まれている記述は， target_def.csv（または，同等の役割を持つファイル）に追加する必要はない．</p>
+  <p>最後に，target_cfg1_out.h（または，そこからインクルードされるファイル） に，offset.hを生成する仕組みが正しく動作していることを確認するための次
+   の記述を追加する．<codeblock>const uint8_t	MAGIC_1 = 0x12;
+const uint16_t	MAGIC_2 = 0x1234;
+const uint32_t	MAGIC_4 = 0x12345678;</codeblock></p>
+ </conbody>
+</concept>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_q3f_r22_zh">
+ <title>サイズの指定された浮動小数点型，その最大値・最小値のマクロ</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(3-4-1) float32_t IEEE754準拠の32ビット単精度浮動小数点数（オプ ション）</p>
+  <p>(3-4-2) double64_t IEEE754準拠の64ビット倍精度浮動小数点数（オプ ション）</p>
+  <p>(3-4-3) FLOAT32_MIN float32_tに格納できる最小の正規化された正の浮 動小数点数（オプション）</p>
+  <p>(3-4-4) FLOAT32_MAX float32_tに格納できる表現可能な最大の有限浮動 小数点数（オプション）</p>
+  <p>(3-4-5) DOUBLE64_MIN double64_tに格納できる最小の正規化された正の浮 動小数点数（オプション）</p>
+  <p>(3-4-6) DOUBLE64_MAX double64_tに格納できる表現可能な最大の有限浮動 小数点数（オプション）</p>
+  <p>指定されたサイズ・表現形式の浮動小数点型を，これらのシンボルに型定義す る．また，データ型に格納できる最大値・最小値を，これらのシンボルにマク ロ定義する．</p>
+  <p>いずれも，該当するデータ型がコンパイラでサポートされている場合にのみ定 義する．</p>
+ </conbody>
+</concept>

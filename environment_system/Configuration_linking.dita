@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_hxn_212_zh">
+ <title>リンク方法の設定</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(2-6-1) LDSCRIPT リンカスクリプトのファイル名</p>
+  <p>開発環境に標準のリンカスクリプトが使用できない場合には，ターゲット依存 部でリンカスクリプトを用意し，そのファイル名をこの変数に定義する．</p>
+  <p>(2-6-2) TEXT_START_ADDRESS テキストセクションの先頭番地</p>
+  <p>(2-6-3) DATA_START_ADDRESS データセクションの先頭番地</p>
+  <p>各セクションの先頭番地の指定が必要な場合には，これらの変数に先頭番地を 定義する．</p>
+  <p>(2-6-4) START_OBJS 先頭にリンクすべきモジュール名</p>
+  <p>(2-6-5) END_OBJS 最後にリンクすべきモジュール名</p>
+  <p>ターゲットによっては，ロードモジュールの先頭と最後にリンクすべきモジュー ルを，ターゲット依存部で用意する必要がある．多くの場合，スタートアップ
+   モジュールをロードモジュールの先頭にリンクする必要がある．</p>
+  <p>ロードモジュールの先頭にリンクすべきプログラムがある場合には，Makefile のターゲット依存部において，そのオブジェクトファイル名をSTART_OBJSに定
+   義し，それに対するコンパイルルールと依存関係作成ルールを定義する．ロー ドモジュールの最後にリンクすべきモジュールがある場合には，そのオブジェ
+   クトファイル名をEND_OBJSに定義し，それに対するコンパイルルールと依存関 係作成ルールを定義する．また，標準のスタートアップモジュール（crt0.o）
+   をリンクしないように，LDFLAGSに-nostdlibを追加する必要がある．さら に，-nostdlibをつけることで標準ライブラリがリンクされなくなるため，
+   LIBSに-lgccを追加しなければならない．</p>
+  <p>例えば，スタートアップモジュールのソースファイルがstart.Sの場合には，
+   Makefileのターゲット依存部に次のような記述を入れるとよい．<codeblock># スタートアップモジュールのオブジェクトファイル名
+START_OBJS = start.o
+
+# スタートアップモジュールのコンパイルルール
+$(START_OBJS): %.o: %.S
+	$(CC) -c $(CFLAGS) $(KERNEL_CFLAGS) $&lt;
+
+# スタートアップモジュールの依存関係作成ルール
+$(START_OBJS:.o=.d): %.d: %.S
+	@$(PERL) $(SRCDIR)/utils/makedep -C $(CC) $(MAKEDEP_OPTS) \
+		-O "$(CFLAGS) $(KERNEL_CFLAGS)" $&lt; >> Makefile.depend
+
+# リンカに対するオプション
+LDFLAGS := -nostdlib $(LDFLAGS)
+LIBS := $(LIBS) -lgcc</codeblock></p>
+  <p>また，GNU開発環境で，コンパイラに標準のcrtbegin.oとcrtend.oを用いる場合 には，Makefile
+   のターゲット依存部に次のような記述を入れるとよい．<codeblock># オブジェクトファイル名
+START_OBJS = $(shell $(CC) -print-file-name=crtbegin.o)
+END_OBJS = $(shell $(CC) -print-file-name=crtend.o)
+
+# 依存関係作成ルール
+$(START_OBJS:.o=.d): %.d:
+$(END_OBJS:.o=.d): %.d:
+
+# リンカに対するオプション
+LDFLAGS := -nostdlib $(LDFLAGS)
+LIBS := $(LIBS) -lgcc</codeblock></p>
+  <p>この場合，これらのファイルをコンパイルすることはないため，コンパイルルー ルは不要である．また，依存関係作成ルールはダミーでよい（依存関係作成ルー ルがないとエラーになる）．</p>
+  <p>(2-6-6) HIDDEN_OBJS 指定しなくてもリンクされるモジュール名</p>
+  <p>ロードモジュールにリンクすべきモジュールを，リンカに対するパラメータで はなく，リンカスクリプト中に（例えば，GNU開発環境のリンカスクリプトの
+   STARTUPを使って）記述する場合には，そのオブジェクトファイル名を， （START_OBJSまたはEND_OBJSではなく）HIDDEN_OBJSに定義し，それに対するコ
+   ンパイルルールと依存関係作成ルールを定義する．HIDDEN_OBJSに定義したモ ジュールは，リンカに対するパラメータからは除外される．LIBSとLDFLAGSにつ
+   いては，START_OBJSまたはEND_OBJSを用いる場合と同様である．</p>
+  <p>例えば，スタートアップモジュールのソースファイルがstart.Sで，start.oを リンクすることをリンカスクリプト中に記述する場合には，Makefileのターゲッ
+   ト依存部に次のような記述を入れるとよい．<codeblock># スタートアップモジュールのオブジェクトファイル名
+HIDDEN_OBJS = start.o
+
+# スタートアップモジュールのコンパイルルール
+$(HIDDEN_OBJS): %.o: %.S
+	$(CC) -c $(CFLAGS) $(KERNEL_CFLAGS) $&lt;
+
+# スタートアップモジュールの依存関係作成ルール
+$(HIDDEN_OBJS:.o=.d): %.d: %.S
+	@$(PERL) $(SRCDIR)/utils/makedep -C $(CC) $(MAKEDEP_OPTS) \
+		-O "$(CFLAGS) $(KERNEL_CFLAGS)" $&lt; >> Makefile.depend
+
+# リンカに対するオプション
+LDFLAGS := -nostdlib $(LDFLAGS)
+LIBS := $(LIBS) -lgcc</codeblock></p>
+  <p/>
+ </conbody>
+</concept>

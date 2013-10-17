@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_zgz_5zc_zh">
+ <title>名前の衝突の防止</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>TOPPERSプロジェクトが提供するソフトウェアのために，TOPPERS_で始まるシン ボルを予約している．ヘッダファイル中に記述され，アプリケーションから参
+   照できる内部シンボルは，TOPPERS_で始まる名前とする．</p>
+  <p>また，_kernel_で始まるシンボルは，カーネル内部の変数や関数のために予約 している．カーネル内部の変数や関数の名前で，リンク時にアプリケーション
+   の名前と衝突する可能性があるものは，リネーム記述にリストアップすること で，コンパイル時に_kernel_で始まる名前に置き換えることとしている．</p>
+  <p/>
+ </conbody>
+</concept>

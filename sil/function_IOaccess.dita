@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_xmy_nl2_zh">
+ <title>I/O空間アクセス関数</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>メモリ空間とは別にI/O空間を持つプロセッサでは，I/O空間にあるデバイスレ ジスタをアクセスするための関数として，sil_reb_iop，sil_wrb_iop，
+   sil_reh_iop，sil_wrh_iop，sil_reh_lep，sil_wrh_lep，sil_reh_bep，
+   sil_wrh_bep，sil_rew_iop，sil_wrw_iop，sil_rew_lep，sil_wrw_lep，
+   sil_rew_bep，sil_wrw_bepの中で必要なものを，ターゲット依存部で用意する．</p>
+ </conbody>
+</concept>

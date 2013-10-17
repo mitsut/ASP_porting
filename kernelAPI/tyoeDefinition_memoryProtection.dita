@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_z5x_jm2_zh">
+ <title>メモリ領域確保のための型定義</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(5-4-1) TOPPERS_STK_T スタック領域を確保するための型（オプション）</p>
+  <p> (5-4-2) TOPPERS_MPF_T 固定長メモリプール領域を確保するための型（オプション） </p>
+  <p>スタック領域と固定長メモリプール領域は，標準では，intptr_t型の配列とし て確保するが，より大きい単位でアラインさせたいなどの理由で，それ以外の
+   型の配列として確保する場合には，それぞれTOPPERS_STK_TとTOPPERS_MPF_Tを， 配列のベースとなるデータ型にマクロ定義する．</p>
+  <p/>
+ </conbody>
+</concept>

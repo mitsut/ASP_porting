@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_c5t_kf2_zh">
+ <title>標準的な定義の上書き</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>t_stddef.hに含まれるTOPPERS共通定義の標準的な定義を上書きする場合には， 以下のマクロを定義する．</p>
+  <p>(3-6-1) TOPPERS_bool（オプション，デフォルトはint）</p>
+  <p> (3-6-2) TOPPERS_size（オプション，デフォルトはuintptr_t）</p>
+  <p> (3-6-3) TOPPERS_fp（オプション，デフォルトは他と互換性のない関数ポインタ）</p>
+  <p>それぞれ，bool_t，SIZE，FPに型定義すべきデータ型． </p>
+  <p>(3-6-4) UINT_C(val)（オプション，デフォルトはUを付加）</p>
+  <p> (3-6-5) ULONG_C(val)（オプション，デフォルトはULを付加）</p>
+  <p> それぞれ，unsigned uint型，unsigned long型の定数を作るためのマクロ．</p>
+  <p> (3-6-6) NULL（オプション，デフォルトは0）</p>
+  <p> C90準拠のC言語環境では，NULLの定義はstddef.hに含まれているため，これを インクルードしてもよい．</p>
+  <p> (3-6-7) ERCD(mercd, sercd)（オプション）</p>
+  <p> (3-6-8) MERCD(ercd)（オプション）</p>
+  <p> (3-6-9) SERCD(ercd)（オプション）</p>
+  <p> ERCD，MERCD，SERCDの標準の定義は，符号付き整数が2の補数で表現されており， 右シフト演算子（>>）が算術シフトされることを仮定している．多くのコンパ
+   イラでこの仮定が成り立つが，そうでない場合には，ターゲット依存部でこれ らの定義を上書きする必要がある．</p>
+  <p> (3-6-10) ALIGN_TYPE(addr, type)（オプション）</p>
+  <p> アドレスaddrが，データ型typeのアラインメント単位にアラインしているか チェックするマクロ．</p>
+ </conbody>
+</concept>

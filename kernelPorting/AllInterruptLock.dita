@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_o3x_jq2_zh">
+ <title>全割込みロック状態の管理</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>全割込みロック状態は，NMIを除くすべての割込みをマスクした状態である．全 割込みロック状態を管理する機能は，システムインタフェースレイヤ（SIL）に
+   よって提供され，カーネルは全割込みロック状態を管理しない． </p>
+  <p>全割込みロック状態では，sns_kerとext_ker以外のカーネルのサービスコール を呼ぶことはできないものとしており，呼んだ場合には何が起こるか保証して
+   いない．sns_kerとext_kerから呼び出す処理は，トレースログ取得処理とSILの サービスコールを除くと，call_exit_kernelのみである．そのため，
+   call_exit_kernelから呼び出すものを除いて，カーネルのターゲット依存部の 関数が，全割込みロック状態で呼び出される状況は考える必要がない．</p>
+ </conbody>
+</concept>

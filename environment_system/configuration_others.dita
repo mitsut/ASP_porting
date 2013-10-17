@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_mz4_kb2_zh">
+ <title>その他の設定</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(2-8-1) CLEAN_FILES cleanにより削除するファイル名</p>
+  <p>cleanにより削除するファイルをターゲット依存部で追加したい場合には，ファ イル名をこの変数に追加定義する．</p>
+  <p>(2-8-2) REALCLEAN_FILES realcleanにより削除するファイル名</p>
+  <p>realcleanにより削除するファイルをターゲット依存部で追加したい場合には， ファイル名をこの変数に追加定義する．</p>
+ </conbody>
+</concept>

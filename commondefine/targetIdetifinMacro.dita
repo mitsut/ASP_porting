@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_ed4_gd2_zh">
+ <title>ターゲット識別マクロ</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>アプリケーションやシステムサービスでターゲットを識別するために， "TOPPERS_"にシステム略称を大文字にした文字列を連結したもの（例えば，
+   "TOPPERS_DVE68K"）をマクロ定義する．</p>
+  <p>また，ターゲット依存部からプロセッサ依存部やチップ依存部を切り分けた場 合には，"TOPPERS_"に依存部略称を大文字にした文字列を連結したもの（例え
+   ば，"TOPPERS_M68K"）をマクロ定義する．</p>
+  <p/>
+ </conbody>
+</concept>

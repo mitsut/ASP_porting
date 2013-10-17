@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_ud4_gyd_zh">
+ <title>オフセットファイルの生成方法</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>アセンブリ言語で記述されるプログラムから，C言語の構造体にアクセスする場 合には，構造体の各フィールドのオフセット値を参照することが必要である．
+   ASPカーネルでは，必要なオフセット値を求めてファイル（標準ではoffset.h） に生成するための仕組みを用意している．</p>
+  <p>この仕組みを用いることで，例えば，TCB中のtexptnフィールドのオフセット値 をTCB_texptnにマクロ定義することや，TCB中のタスクコンテキストブロック
+   （tskctxb）に含まれるpcフィールドのオフセット値をTCB_pcにマクロ定義する ことができる．また，TCB中のenatexフィールドのオフセット値，ビット位置，
+   ビットマスクを，それぞれTCB_enatex，TCB_enatex_bit，TCB_enatex_maskにマ クロ定義することができる．</p>
+  <p>offset.hを生成するための仕組みとして，現時点では，コンフィギュレータを 用いる方法と，makeoffset.cとgenoffsetを用いる方法を用意している．後者の
+   方法は，GNU開発環境にしか対応していないことから，将来のバージョンでは， 後者の方法のサポートをやめる計画である．新たにポーティングする場合には， 前者の方法を用いることを推奨する．</p>
+  <p>これらの仕組みでオフセットファイルを生成できない時には，offset.hをター ゲット依存部で用意し，Makefileのターゲット依存部でOMIT_MAKEOFFSETを
+   "true"に定義する．</p>
+  <p>拡張パッケージの中には，TCBにフィールドを追加するものがあるため，TCB中 のフィールドのオフセット値は変化する．offset.hを生成する場合でも，ター
+   ゲット依存部で用意する場合でも，拡張パッケージに対応するためには，この ことを考慮する必要がある．</p>
+ </conbody>
+</concept>

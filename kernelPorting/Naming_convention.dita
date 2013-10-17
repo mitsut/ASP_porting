@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_rqq_gp2_zh">
+ <title>ターゲット依存部の関数の命名規則</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>カーネル実装のターゲット依存部を構成する関数の中で，t_で始まるものはタ スクコンテキスト専用，i_で始まるものは非タスクコンテキスト専用，x_で始
+   まるものはいずれのコンテキストからでも呼び出すことができる関数である．</p>
+ </conbody>
+</concept>

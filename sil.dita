@@ -41,6 +41,9 @@ Graduate School of Information Science, Nagoya Univ., JAPAN
  <title>システムインタフェースレイヤ（SIL）のターゲット依存部</title>
  <shortdesc></shortdesc>
  <conbody>
-  <p>Concept definition.</p>
+  <p>システムインタフェースレイヤ（SIL，sil.h）のターゲット依存部の定義は， target_sil.hまたはそこからインクルードされるファイル（プロセッサ・チッ
+プ・開発環境依存部で用意されるヘッダファイルなど）に含める．</p>
+<p>SILのサービスコールは，任意のシステム状態で呼び出すことができる．そのた め，SILのターゲット依存部の関数は，任意のシステム状態で呼び出せるように 実装しなければならない．</p>
+<p/>
  </conbody>
 </concept>

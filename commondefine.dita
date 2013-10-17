@@ -41,6 +41,7 @@ Graduate School of Information Science, Nagoya Univ., JAPAN
  <title>TOPPERS共通定義のターゲット依存部</title>
  <shortdesc></shortdesc>
  <conbody>
-  <p>Concept definition.</p>
+  <p>TOPPERS共通定義（t_stddef.h）のターゲット依存部は，target_stddef.hまた はそこからインクルードされるファイル（プロセッサ・チップ・開発環境依存
+部で用意されるヘッダファイルなど）に含める．</p>
  </conbody>
 </concept>

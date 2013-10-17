@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_k2f_ddd_zh">
+ <title>インクルード記述の方法</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>開発環境で用意されている標準ヘッダファイルおよびincludeディレクトリ下の 標準ヘッダファイルは，「#include &lt;...>」によりインクルードする．</p>
+  <p>その他のヘッダファイルは，「#include "..."」によりインクルードする．ヘッ ダファイルが，カレントディレクトリやインクルードするファイルと同じディ
+   レクトリ以外のディレクトリに置かれている場合には，次のようにパス指定を 行う．<ul id="ul_am1_gdd_zh">
+    <li>ターゲット依存部（target/&lt;ターゲット名>）のディレクトリに置かれている 場合は，パス指定を行わず，ファイル名のみを記述する．<p>例）#include
+      "target_config.h"</p></li>
+    <li>archディレクトリ下のディレクトリに置かれている場合には，archディレク トリからの相対パスで記述する．<p>例）#include
+      "m68k_gcc/prc_config.h"</p></li>
+    <li>その他の場合には，ソースプログラムのルートディレクトリ（configureが置 かれているディレクトリ）からの相対パスで記述する．<p>例）#include
+      "pdic/upd72001/upd72001.h"</p></li>
+    <li>カーネルを構成するファイルから，kernelディレクトリ下のヘッダファイル をインクルードする場合は，パス指定を行わず，ファイル名のみを記述する．<p>例）#include
+      "kernel_impl.h"</p></li>
+   </ul></p>
+ </conbody>
+</concept>

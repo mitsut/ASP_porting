@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_zdk_kd2_zh">
+ <title>整数型の最大値・最小値・ビット数</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(3-2-1) INT_MAX intに格納できる最大値（C90準拠）</p>
+  <p>(3-2-2) INT_MIN intに格納できる最小値（C90準拠）</p>
+  <p>(3-2-3) UINT_MAX unsigned intに格納できる最大値（C90準拠）</p>
+  <p>(3-2-4) LONG_MAX longに格納できる最大値（C90準拠）</p>
+  <p>(3-2-5) LONG_MIN longに格納できる最小値（C90準拠）</p>
+  <p>(3-2-6) ULONG_MAX unsigned longに格納できる最大値（C90準拠）</p>
+  <p>(3-2-7) CHAR_BIT char型のビット数（C90準拠）</p>
+  <p>整数型の最大値・最小値・ビット数を，これらのシンボルにマクロに定義する．</p>
+  <p>これらのマクロは，C90に準拠したものである．開発環境にC90に準拠した limits.hが用意されている場合には，これらのマクロを定義することに代えて，
+   limits.hをインクルードすればよい．</p>
+ </conbody>
+</concept>

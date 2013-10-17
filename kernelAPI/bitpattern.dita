@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_pqc_nm2_zh">
+ <title>ビットパターンのビット数</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(5-5-1) TBIT_TEXPTN タスク例外要因のビット数（オプション）</p>
+  <p> (5-5-2) TBIT_FLGPTN イベントフラグのビット数（オプション）</p>
+  <p> TBIT_TEXPTN，TBIT_FLGPTNの標準の定義では，整数型の有効ビット数が，その 型のsizeofにCHAR_BITを乗じたものと一致していることを仮定している．多く
+   のコンパイラでこの仮定が成り立つが，そうでない場合には，ターゲット依存 部でこれらの定義を上書きする必要がある．ただし，これらの値は16以上でな ければならない．</p>
+ </conbody>
+</concept>

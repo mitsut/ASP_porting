@@ -46,14 +46,65 @@ Graduate School of Information Science, Nagoya Univ., JAPAN
         <booklists>
             <abbrevlist/>
             <toc/>
-        </booklists>    
+        </booklists>
     </frontmatter>
-    <chapter href="commonsubject.dita"/>
-    <chapter href="systemenv.dita"/>
-    <chapter href="commondefine.dita"/>
-    <chapter href="sil.dita"/>
-    <chapter href="kernelAPI.dita"/>
-    <chapter href="kernelPorting.dita"/>
+    <chapter href="commonsubject.dita">
+        <topicref href="common/Configuration_of_target_depend.dita"/>
+        <topicref href="common/name_collisions.dita"/>
+        <topicref href="common/multipul_include.dita"/>
+        <topicref href="common/sharing_headerfile.dita"/>
+        <topicref href="common/describe_includefile.dita"/>
+        <topicref href="common/clicalsection.dita"/>
+    </chapter>
+    <chapter href="systemenv.dita">
+        <topicref href="environment_system/target_depend.dita"/>
+        <topicref href="environment_system/Target_Makefile.dita"/>
+        <topicref href="environment_system/Variable_Makefile.dita"/>
+        <topicref href="environment_system/compile_option.dita"/>
+        <topicref href="environment_system/Offsetfile.dita">
+            <topicref href="environment_system/ConfiguratonConfiguratar_option.dita"/>
+            <topicref href="environment_system/genoffset.dita"/>
+        </topicref>
+        <topicref href="environment_system/Configuration_linking.dita"/>
+        <topicref href="environment_system/Definition_dependent.dita"/>
+        <topicref href="environment_system/configuration_others.dita"/>
+    </chapter>
+    <chapter href="commondefine.dita">
+        <topicref href="commondefine/targetIdetifinMacro.dita"/>
+        <topicref href="commondefine/integerType.dita"/>
+        <topicref href="commondefine/IntegerMacro.dita"/>
+        <topicref href="commondefine/floattype.dita"/>
+        <topicref href="commondefine/CompilerExtension.dita"/>
+        <topicref href="commondefine/definitionUpdate.dita"/>
+        <topicref href="commondefine/assersion.dita"/>
+    </chapter>
+    <chapter href="sil.dita">
+        <topicref href="LogInterrupt.dita"/>
+        <topicref href="sil/delaynanosec.dita"/>
+        <topicref href="sil/endian.dita"/>
+        <topicref href="sil/function_memoryarea.dita"/>
+        <topicref href="sil/function_IOaccess.dita"/>
+    </chapter>
+    <chapter href="kernelAPI.dita">
+        <topicref href="kernelAPI/support_targetDefinition.dita" type="concept"/>
+        <topicref href="kernelAPI/range_Interrupt.dita"/>
+        <topicref href="kernelAPI/timetick_definition.dita"/>
+        <topicref href="kernelAPI/tyoeDefinition_memoryProtection.dita"/>
+        <topicref href="kernelAPI/bitpattern.dita"/>
+        <topicref href="kernelAPI/macro_memoryProtection.dita"/>
+        <topicref href="kernelAPI/overrunhandler.dita"/>
+    </chapter>
+    <chapter href="kernelPorting.dita">
+        <topicref href="kernelPorting/common.dita" type="concept">
+            <topicref href="kernelPorting/structer.dita"/>
+            <topicref href="kernelPorting/Naming_convention.dita"/>
+        </topicref>
+        <topicref href="kernelPorting/TraceLog.dita"/>
+        <topicref href="kernelPorting/management_systemstatus.dita">
+            <topicref href="kernelPorting/AllInterruptLock.dita"/>
+            <topicref href="kernelPorting/management_context.dita"/>
+        </topicref>
+    </chapter>
     <chapter href="configurator.dita"/>
     <chapter href="systemservice.dita">
         <topicref href="systemLog.dita"/>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_kts_qm2_zh">
+ <title>メモリ領域確保のためのマクロ</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(5-6-1) TOPPERS_ROUND_SZ（オプション）</p>
+  <p> (5-6-2) TOPPERS_COUNT_SZ（オプション）</p>
+  <p> TOPPERS_COUNT_SZ(sz, unit)は，sz/unitを切り上げた値を求めるマクロで，サ イズがszのメモリ領域をサイズがunitのデータ型の配列で確保する場合の要素
+   数を求めるために用いる．TOPPERS_ROUND_SZ(sz, unit)は，sz/unitを切り上げ たものにunitをかけた値を求めるマクロで，サイズがszのメモリ領域をサイズ
+   がunitのデータ型の配列で確保する場合のトータルサイズを求めるために用い る．</p>
+  <p> それぞれ，標準のTOPPERS_ROUND_SZ，TOPPERS_COUNT_SZが適切でなく，ターゲッ ト依存部で用意する場合には，これらのシンボルを適切な値にマクロ定義する．</p>
+ </conbody>
+</concept>

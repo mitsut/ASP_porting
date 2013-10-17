@@ -41,6 +41,7 @@ Graduate School of Information Science, Nagoya Univ., JAPAN
  <title>システム構築環境のターゲット依存部</title>
  <shortdesc></shortdesc>
  <conbody>
-  <p>Concept definition.</p>
+  <p>この章の説明は，GNU開発環境（GCC，GAS，BINUTILS，GNU Make）を用いること を想定して記述してある．それ以外の開発環境を用いる場合には，開発環境に
+あわせて修正する必要がある．</p>
  </conbody>
 </concept>

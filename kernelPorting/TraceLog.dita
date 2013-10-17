@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_hg2_jp2_zh">
+ <title>トレースログ機能への対応</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>カーネルのトレースログ機能の中で，ディスパッチャ，割込みハンドラ，CPU例 外ハンドラの開始・終了のトレースログ取得は，ターゲット依存部で実装する
+   必要がある．ほとんどのターゲットシステムにおいて，それらの処理はアセン ブリ言語で記述されており，ターゲット非依存部向けのトレースログマクロと
+   同じ方法（トレースログマクロを，トレースログ取得処理のC言語記述にマクロ 定義する方法）は，用いることができない．</p>
+  <p>そこで，アセンブリ言語で記述されている処理中にトレースログ取得を埋め込 む場合には，トレースログマクロが定義されていれば，それが何に定義されて
+   いるかは無視して，標準的なトレースログ関数がC言語で記述されていると想定 して，それを呼び出すようにコーディングする．</p>
+  <p>具体的には，下の表の左側に示したトレースログマクロが定義されていれば， 表の右側に示したC言語記述と同等の処理を行うようにコーディングする．</p>
+  <p>
+   <simpletable id="simpletable_orv_lp2_zh">
+    <sthead>
+     <stentry>トレースログマクロ</stentry>
+     <stentry>トレースログ取得処理</stentry>
+    </sthead>
+    <strow>
+     <stentry>LOG_DSP_ENTER</stentry>
+     <stentry>log_dsp_enter(p_runtsk)</stentry>
+    </strow>
+    <strow>
+     <stentry>LOG_DSP_LEAVE</stentry>
+     <stentry>log_dsp_leave(p_runtsk)</stentry>
+    </strow>
+    <strow>
+     <stentry>LOG_INH_ENTER</stentry>
+     <stentry>log_inh_enter(inhno)</stentry>
+    </strow>
+    <strow>
+     <stentry>LOG_INH_LEAVE</stentry>
+     <stentry>log_inh_leave(inhno)</stentry>
+    </strow>
+    <strow>
+     <stentry>LOG_EXC_ENTER</stentry>
+     <stentry>log_exc_enter(excno)</stentry>
+    </strow>
+    <strow>
+     <stentry>LOG_EXC_LEAVE</stentry>
+     <stentry>log_exc_leave(excno)</stentry>
+    </strow>
+   </simpletable>
+  </p>
+ </conbody>
+</concept>

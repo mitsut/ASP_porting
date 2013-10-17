@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_xh5_s12_zh">
+ <title>依存関係の定義</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>コンフィギュレータの各パスに対して，ターゲット依存のファイルへの依存関 係を定義する．具体的には，パス1，パス2，パス3が依存するファイルを，それ
+   ぞれcfg1_out.c，kernel_cfg.timestamp，$(OBJFILE)に対する依存関係の形で 記述する．</p>
+  <p>ほとんどの場合に，ターゲット依存部ディレクトリのMakefile.targetには，以 下の記述を含める必要がある．<cmdname>cfg1_out.c:
+    $(TARGETDIR)/target_def.csv kernel_cfg.timestamp: $(TARGETDIR)/target.tf $(OBJFILE):
+    $(TARGETDIR)/target_check.tf </cmdname></p>
+ </conbody>
+</concept>

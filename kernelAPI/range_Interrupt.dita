@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_tt5_bm2_zh">
+ <title>割込み優先度の範囲</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(5-2-1) TMIN_INTPRI 割込み優先度の最小値（最高値）</p>
+  <p> (5-2-2) TMAX_INTPRI 割込み優先度の最大値（最低値）</p>
+  <p> それぞれ，カーネル管理の割込み優先度の最小値（＝優先度が最高），カーネ ル管理の割込み優先度の最大値（優先度が最低）に定義する．TMAX_INTPRIは-1
+   に固定されているが，対称性のために，ターゲット依存部で定義することにし ている．</p>
+ </conbody>
+</concept>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_bth_xg2_zh">
+ <title>アサーションのための定義</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>t_stddef.hには，assertの定義が含まれる．assertが失敗した場合（assertの パラメータがfalseになった場合）の処理を，ターゲット依存に用意する必要が
+   ある．これらの定義は，assertマクロを使用する前であれば，t_stddef.h以降 にインクルードされるファイルに含まれていてもよい．なお，assertを無効に
+   する（NDEBUGをマクロ定義してコンパイルする）場合には，これらを用意する 必要はない．</p>
+  <p>(3-7-1) TOPPERS_assert_abort(void) </p>
+  <p>assertが失敗した場合に，プログラムを停止させる関数．システム開発中はデ バッガに落とすのが理想的である．システム稼働時には例外処理を行わせるこ とになる．</p>
+  <p>(3-7-2) TOPPERS_assert_fail(exp, file, line)</p>
+  <p> assertが失敗した時の情報を表示/記録するためのマクロ．システムログ機能を 用いる場合には，t_syslog.hにシステムログ機能に記録するための定義が含ま
+   れているので，ターゲット依存部で用意する必要はない．</p>
+ </conbody>
+</concept>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_y3m_h32_zh">
+ <title>微少時間待ち</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>(4-2-1) void sil_dly_nse(ulong_t dlytim)</p>
+  <p> dlytimで指定された以上の時間（単位はナノ秒），ループなどによって待つ関 数．</p>
+  <p> 以下の関数と等価な処理を，アセンブリ言語で記述する方法を，標準的な実装 方法とする．アセンブリ言語で記述するのは，コンパイラの最適化に依存しな
+   いようにするためである．またこの関数は，キャッシュ等の影響を受けないよ うに，できる限りメモリアクセスを行わないように実装すべきである．</p>
+  <p>
+   <codeblock>void sil_dly_nse(ulong_t dlytim)
+{
+	dlytim -= SIL_DLY_TIM1;
+	if (結果が0より大きい) {
+		do {
+			dlytim -= SIL_DLY_TIM2;
+		} while (結果が0より大きい);
+	}
+}</codeblock>
+  </p>
+  <p>この関数の動作は次の通りである．dlytimがSIL_DLY_TIM1以下の場合には，最 初のif文の条件が成立せず，すぐに関数から抜ける．dlytimがSIL_DLY_TIM1よ
+   り大きく，(SIL_DLY_TIM1+SIL_DLY_TIM2)以下の場合には，最初のif文の条件は 成立するが，doループは1回も回らずに関数から抜ける．dlytimが
+   (SIL_DLY_TIM1+SIL_DLY_TIM2)より大きく，(SIL_DLY_TIM1+SIL_DLY_TIM2*2)以
+   下の場合には，doループを1回だけ回って関数から抜ける．その後，dlytimが SIL_DLY_TIM2大きくなる度に，whileループを回る回数が1回ずつ増える．</p>
+  <p>なお，この関数をアセンブリ言語（または，C言語）で記述する場合，どのファ イルに記述するかが問題になる．SILのターゲット依存部には，標準では，アセ
+   ンブリ言語（または，C言語）の関数定義を記述するためのファイルを用意して いない．ターゲット依存で用意してもよいが，例外的に，カーネル実装のター
+   ゲット依存モジュール（target_support.Sまたはtarget_config.c）に記述して もよいことにする．</p>
+  <p>(4-2-2) SIL_DLY_TIM1（オプション）</p>
+  <p> (4-2-3) SIL_DLY_TIM2（オプション）</p>
+  <p> sil_dly_nseを上記の標準的な方法で実現した場合，この2つの定数をターゲッ ト依存部でマクロ定義する．</p>
+  <p>SIL_DLY_TIM2は，上記の関数において，doループ1回の実行時間（単位はナノ秒） に設定する．ターゲットプロセッサの命令セットにもよるが，おおよそ，減算
+   命令と条件分岐命令各1回の実行時間になる．SIL_DLY_TIM2が決まれば，関数呼 出しも含めた全体の時間がdlytimで指定された以上の時間になるように，
+   SIL_DLY_TIM1を決める．</p>
+  <p>この2つの定数値の決定を支援するプログラムとして，testディレクトリに， test_dlynseを用意している．test_dlynseを実行すると，次のような出力が得 られる．</p>
+  <p>
+   <codeblock>-- for fitting parameters --
+sil_dly_nse(0): 430 OK
+sil_dly_nse(420): 430 OK
+sil_dly_nse(510): 520 OK
+sil_dly_nse(600): 610 OK
+&lt;中略>
+-- for checking boundary conditions --
+sil_dly_nse(421): 520 OK
+sil_dly_nse(511): 610 OK
+sil_dly_nse(601): 700 OK</codeblock>
+  </p>
+  <p>"for fitting parameters"に続く出力は，sil_dly_nse(dlytim)を呼び出した場 合の待ち時間を測定した結果である．このプログラムを用いて，":"の右側の数
+   値が，dlytimよりも大きい範囲でなるべく近い値になるように，2つの定数値を 調整する．"for checking boundary conditions"に続く出力は，プログラムの
+   妥当性をチェックするためのもので，":"の右側の数値が，dlytimよりも大きい ことを確認する（近い値になる必要はない）．</p>
+ </conbody>
+</concept>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="concept_xsk_rcd_zh">
+ <title>アセンブリ言語とのヘッダファイルの共用</title>
+ <shortdesc></shortdesc>
+ <conbody>
+  <p>ASPカーネルのヘッダファイルの多くは，アセンブリ言語のソースファイルから もインクルードできるようにするために，次のルールに従って記述するものと する．</p>
+  <ul id="ul_ddg_5cd_zh">
+   <li>TOPPERS_MACRO_ONLYがマクロ定義されている場合には，アセンブリ言語では 解釈できない記述（マクロ定義以外の記述）を除くように記述する．</li>
+   <li>符号無し整数型の定数値は，UINT_CやULONG_Cなどの整数定数を作るためのマ クロを用いて記述する．ただし，アセンブリ言語のソースファイルからもイ
+    ンクルードできるファイル中であっても，C言語のみで用いる定数をこれらの マクロを使って記述する必要はない．</li>
+  </ul>
+  <p>また，カーネル実装においては，次のルールに従うものとする．<ul id="ul_s1q_wcd_zh">
+    <li>アセンブリ言語からも用いる定数の定義中に型キャストを用いる場合には， CASTマクロを用いて記述する．</li>
+   </ul></p>
+  <p>アセンブリ言語からヘッダファイルをインクルードする際には，必要に応じて， TOPPERS_MACRO_ONLY，UINC_C，ULONG_C，CASTをマクロ定義してから，インクルー
+   ドしなければならない．</p>
+ </conbody>
+</concept>
